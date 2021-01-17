@@ -1,28 +1,10 @@
 pipeline {
-    agent any
-
-    triggers {
-        pollSCM '* * * * *'
-    }
+    agent { docker { image 'maven:3.3.3' } }
     stages {
-        stage('Build') {
-             if (env.BUILDING_TOOL == 'maven') {
-                            sh 'mvn clean package'
-                        } else {
-                             sh 'gradlew clean build'
-                        }
+        stage('build') {
+            steps {
+                sh 'mvn clean install'
+            }
         }
-        stage('Test') {
-            if (env.BUILDING_TOOL == 'maven') {
-                                        sh 'mvn clean test'
-                                    } else {
-                                         sh './gradlew clean test'
-                                    }
-        }
-        stage('Deploy') {
-                    steps {
-                        echo 'Deploying....'
-                    }
-                }
     }
 }
