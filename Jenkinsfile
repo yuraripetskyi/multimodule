@@ -1,35 +1,28 @@
 pipeline {
     agent any
-    options {
-        buildDiscarder(logRotator(numToKeepStr:'5'))
-    }
-    triggers {}
     tools {
-        jdk 'Java 1.11 Oracle'
         maven 'Maven 3.3.9'
+        jdk 'jdk11'
     }
     stages {
-        stage('build & docker :dev') {
-            when {
-                branch 'dev'
-            }
+        stage ('Initialize') {
             steps {
-                sh 'mvn clean install'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
-    }
-    post {
-        always {
-            script {
 
-                if (currentBuild.result == null) {
-                    currentBuild.result = 'SUCCESS'
+        stage ('Build') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml'
                 }
             }
-            alwaysNotifications()
-        }
-        failure {
-            failureNotifications()
         }
     }
 }
