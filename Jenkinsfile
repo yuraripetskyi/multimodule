@@ -1,32 +1,15 @@
 pipeline {
-
     agent {
-            label  'maven'
+        docker {
+            image 'maven:3-alpine'
+            args '-v $HOME/.m2:/root/.m2'
         }
-
-    // using the Timestamper plugin we can add timestamps to the console log
-    options {
-        timestamps()
     }
-
-    environment {
-
-    }
-
     stages {
         stage('Build') {
-        withMaven {
-            clean install
-        }
-      }
-    }
-
-    post {
-        failure {
-            // notify users when the Pipeline fails
-           // mail to: 'team@example.com',
-            //        subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             //       body: "Something is wrong with ${env.BUILD_URL}"
+            steps {
+                sh 'mvn clean install'
+            }
         }
     }
 }
