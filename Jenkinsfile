@@ -1,13 +1,9 @@
-pipeline {
-        agent { docker { image 'maven:3.3.3' } }
-        stages {
-            stage('build') {
-                environment {
-                  HOME="."
-                }
-                steps {
-                    sh 'mvn clean install'
-                }
-           }
-        }
-    }
+node {
+  stage 'Build and Test'
+  // Build using a plain docker container, not our local Dockerfile
+  def mvnContainer = docker.image('adoptopenjdk/maven-openjdk11')
+  mvnContainer.inside('-v /m2repo:/m2repo') {
+
+      sh 'mvn clean package'
+   }
+}
