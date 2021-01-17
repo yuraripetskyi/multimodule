@@ -1,4 +1,0 @@
-com/multimodule/api/SampleApiApplication.java
- com.multimodule.api.SampleApiApplication
-com/multimodule/api/service/MemberServiceCustom.java
- com.multimodule.api.service.MemberServiceCustom

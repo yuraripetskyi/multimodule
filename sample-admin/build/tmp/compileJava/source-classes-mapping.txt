@@ -1,4 +1,0 @@
-com/multimodule/admin/member/MemberController.java
- com.multimodule.admin.member.MemberController
-com/multimodule/admin/SampleAdminApplication.java
- com.multimodule.admin.SampleAdminApplication

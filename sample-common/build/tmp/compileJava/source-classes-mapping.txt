@@ -1,4 +1,0 @@
-com/multimodule/common/member/Member.java
- com.multimodule.common.member.Member
-com/multimodule/common/repository/MemberRepository.java
- com.multimodule.common.repository.MemberRepository

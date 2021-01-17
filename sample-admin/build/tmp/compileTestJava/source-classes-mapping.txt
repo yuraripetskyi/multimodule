@@ -1,2 +1,0 @@
-com/multimodule/admin/SampleAdminApplicationTest.java
- com.multimodule.admin.SampleAdminApplicationTest
