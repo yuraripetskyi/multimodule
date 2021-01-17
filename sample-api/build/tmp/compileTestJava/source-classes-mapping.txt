@@ -1,0 +1,2 @@
+com/multimodule/api/service/MemberServiceCustomTest.java
+ com.multimodule.api.service.MemberServiceCustomTest

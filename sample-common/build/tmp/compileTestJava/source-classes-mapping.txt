@@ -1,0 +1,4 @@
+com/multimodule/common/member/MemberRepositoryTest.java
+ com.multimodule.common.member.MemberRepositoryTest
+com/multimodule/common/ModuleCommonApplicationTests.java
+ com.multimodule.common.ModuleCommonApplicationTests
